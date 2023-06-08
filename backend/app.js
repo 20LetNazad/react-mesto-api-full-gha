@@ -7,16 +7,18 @@ const { registerValidate, loginValidate } = require('./utils/validate');
 const NotFoundError = require('./errors/NotFoundError');
 const MainErrorHandler = require('./errors/MainErrorHandler');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
+const cors = require('cors');
+
+mongoose.connect('mongodb://localhost:27017/mestodb');
+const { PORT = 3000 } = process.env;
+
+const app = express();
+app.use(cors());
 
 mongoose.set('strictQuery', false);
 
-const app = express();
-const { PORT = 3000 } = process.env;
-
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
-mongoose.connect('mongodb://localhost:27017/mestodb');
 
 app.use(requestLogger);
 
