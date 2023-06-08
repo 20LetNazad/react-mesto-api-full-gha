@@ -1,4 +1,4 @@
-const BASE_URL = 'https://auth.nomoreparties.co';
+const BASE_URL = 'https://api.mesto.lastqop.nomoredomains.rocks';
 
 const resStatus = (res) => {
   if (res.ok) {
