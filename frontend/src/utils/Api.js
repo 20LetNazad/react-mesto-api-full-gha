@@ -2,7 +2,6 @@ class Api {
   constructor(config) {
     this._headers = config.headers;
     this._url = config.url;
-    this._userId = config.userId;
   }
 
   /** Проверка запросов на сервер */
@@ -96,10 +95,9 @@ class Api {
 }
 
 const api = new Api({
-  url: 'https://mesto.nomoreparties.co/v1/cohort-55',
-  userId: '5c67497edf177b6be73287c3',
+  url: 'https://api.mesto.lastqop.nomoredomains.rocks',
   headers: {
-    authorization: '96508db4-2bdb-409e-a863-4987f404d514',
+    Authorization: `Bearer ${localStorage.getItem('jwt')}`,
     'Content-Type': 'application/json',
   },
 });
