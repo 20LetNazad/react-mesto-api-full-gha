@@ -1,13 +1,13 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const { errors } = require('celebrate');
+const cors = require('cors');
 const auth = require('./middlewares/auth');
 const { createUser, login } = require('./controllers/users');
 const { registerValidate, loginValidate } = require('./utils/validate');
 const NotFoundError = require('./errors/NotFoundError');
 const MainErrorHandler = require('./errors/MainErrorHandler');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
-const cors = require('cors');
 
 mongoose.connect('mongodb://localhost:27017/mestodb');
 const { PORT = 3000 } = process.env;
