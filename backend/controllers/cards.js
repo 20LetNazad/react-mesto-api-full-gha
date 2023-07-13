@@ -6,7 +6,7 @@ const ForbiddenError = require('../errors/ForbiddenError');
 module.exports.findCards = (req, res, next) => {
   Card.find({})
     .populate(['owner', 'likes'])
-    .then((cards) => res.send({ data: cards }))
+    .then((cards) => res.send(cards))
     .catch(next);
 };
 
@@ -16,7 +16,7 @@ module.exports.createCard = (req, res, next) => {
 
   Card.create({ name, link, owner })
     .then((card) => {
-      res.status(200).send({ data: card });
+      res.status(200).send(card);
     })
     .catch((err) => {
       if (err.name === 'ValidationError') {
@@ -53,7 +53,7 @@ module.exports.setLike = (req, res, next) => {
       if (!card) {
         next(new NotFoundError('Card not found'));
       } else {
-        res.status(200).send({ data: card });
+        res.status(200).send(card);
       }
     })
     .catch((err) => {
@@ -75,7 +75,7 @@ module.exports.delLike = (req, res, next) => {
       if (!card) {
         next(new NotFoundError('Card not found'));
       } else {
-        res.status(200).send({ data: card });
+        res.status(200).send(card);
       }
     })
     .catch((err) => {

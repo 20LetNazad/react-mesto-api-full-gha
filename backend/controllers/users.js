@@ -11,7 +11,7 @@ module.exports.getUser = (req, res, next) => {
       if (!user) {
         throw new NotFoundError('User not found');
       }
-      return res.status(200).send({ data: user });
+      return res.status(200).send(user);
     })
     .catch((err) => {
       if (err.name === 'CastError') {
@@ -24,7 +24,7 @@ module.exports.getUser = (req, res, next) => {
 
 module.exports.findUsers = (req, res, next) => {
   User.find({})
-    .then((user) => res.send({ data: user }))
+    .then((user) => res.send(user))
     .catch((err) => {
       next(err);
     });
@@ -32,7 +32,7 @@ module.exports.findUsers = (req, res, next) => {
 
 module.exports.getMyUser = (req, res, next) => {
   User.findById(req.user._id)
-    .then((users) => res.send({ data: users }))
+    .then((users) => res.send(users))
     .catch(next);
 };
 
@@ -85,7 +85,7 @@ module.exports.editUser = (req, res, next) => {
       if (!user) {
         next(new NotFoundError('User not found'));
       } else {
-        res.status(200).send({ data: user });
+        res.status(200).send(user);
       }
     })
     .catch((err) => {
@@ -112,7 +112,7 @@ module.exports.editAvatar = (req, res, next) => {
       if (!user) {
         next(new NotFoundError('User not found'));
       } else {
-        res.status(200).send({ data: user });
+        res.status(200).send(user);
       }
     })
     .catch((err) => {
