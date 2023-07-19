@@ -7,7 +7,7 @@ export default function Header({ loggedIn, userEmail, onSignOut }) {
       <div className="logo"></div>
       {loggedIn ? (
         <LinkForHeader
-          link="/sign-in"
+          link="/signin"
           text="Выйти"
           userEmail={userEmail}
           linksClass="header__link header__link_type_leave"
@@ -16,20 +16,20 @@ export default function Header({ loggedIn, userEmail, onSignOut }) {
       ) : (
         <Routes>
           <Route
-            path="/sign-in"
+            path="/signin"
             element={
               <LinkForHeader
-                link="/sign-up"
+                link="/signup"
                 text="Регистрация"
                 linksClass="header__link"
               />
             }
           ></Route>
           <Route
-            path="/sign-up"
+            path="/signup"
             element={
               <LinkForHeader
-                link={'/sign-in'}
+                link={'/signin'}
                 text="Войти"
                 linksClass="header__link"
               />

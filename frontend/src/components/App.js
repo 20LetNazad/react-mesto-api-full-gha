@@ -104,7 +104,7 @@ export default function App() {
     api
       .addCard(cardData)
       .then((newCard) => {
-        setCards([newCard, ...cards]);
+        setCards([...cards, newCard]);
         closeAllPopups();
       })
       .catch((err) => {
@@ -115,7 +115,7 @@ export default function App() {
   function handleRegister({ email, password }) {
     return Auth.register(email, password)
       .then(() => {
-        navigate('/sign-in');
+        navigate('/signin');
         setToolTipStatus({
           text: 'Вы успешно зарегистрировались!',
           image: accept,
@@ -154,7 +154,7 @@ export default function App() {
     localStorage.removeItem('jwt');
     setUserEmail('');
     setLoggedIn(false);
-    navigate('/sign-in');
+    navigate('/signin');
   }
 
   function handleCheckToken() {
@@ -163,7 +163,7 @@ export default function App() {
       Auth.getToken(jwt)
         .then((data) => {
           setLoggedIn(true);
-          setUserEmail(data.data.email);
+          setUserEmail(data.email);
           navigate('/');
         })
         .catch((err) => {
@@ -221,16 +221,14 @@ export default function App() {
               />
             }
           />
-          <Route path="/sign-in" element={<Login onLogin={handleLogin} />} />
+          <Route path="/signin" element={<Login onLogin={handleLogin} />} />
           <Route
-            path="/sign-up"
+            path="/signup"
             element={<Register onRegister={handleRegister} />}
           />
           <Route
             path="*"
-            element={
-              loggedIn ? <Navigate to="/" /> : <Navigate to="/sign-in" />
-            }
+            element={loggedIn ? <Navigate to="/" /> : <Navigate to="/signin" />}
           />
         </Routes>
         <Footer />
