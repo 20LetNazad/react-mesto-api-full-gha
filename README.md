@@ -8,7 +8,7 @@
 
 ## Ссылки на проект
 
-IP-адрес 158.160.110.35
+IP-адрес 158.160.55.222
 
 Frontend https://mesto.lastqop.nomoredomains.rocks
 
