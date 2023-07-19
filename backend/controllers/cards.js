@@ -16,7 +16,10 @@ module.exports.createCard = (req, res, next) => {
 
   Card.create({ name, link, owner })
     .then((card) => {
-      res.status(200).send(card);
+      card
+        .populate('owner')
+        .then(() => res.status(201).send(card))
+        .catch(next);
     })
     .catch((err) => {
       if (err.name === 'ValidationError') {
@@ -49,6 +52,7 @@ module.exports.setLike = (req, res, next) => {
     { $addToSet: { likes: req.user._id } },
     { new: true },
   )
+    .populate(['owner', 'likes'])
     .then((card) => {
       if (!card) {
         next(new NotFoundError('Card not found'));
@@ -71,6 +75,7 @@ module.exports.delLike = (req, res, next) => {
     { $pull: { likes: req.user._id } },
     { new: true },
   )
+    .populate(['owner', 'likes'])
     .then((card) => {
       if (!card) {
         next(new NotFoundError('Card not found'));
