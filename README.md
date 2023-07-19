@@ -8,8 +8,6 @@
 
 ## Ссылки на проект
 
-IP-адрес 158.160.55.222
-
-Frontend https://mesto.lastqop.nomoredomains.rocks
-
-Backend https://api.mesto.lastqop.nomoredomains.rocks
+IP  158.160.55.222
+Frontend  https://mesto.lastqop.nomoredomains.rocks
+Backend  https://api.mesto.lastqop.nomoredomains.rocks
